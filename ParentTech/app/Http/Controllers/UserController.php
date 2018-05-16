@@ -25,7 +25,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('signup');
+
     }
 
     /**
@@ -82,5 +82,10 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function displaySignUpView()
+    {
+      return view('signup');
     }
 }

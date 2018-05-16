@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::resource('/signup','UserController@create');
+Route::resource('/signup','UserController@displaySignUpView');
