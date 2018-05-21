@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -16,6 +18,7 @@ class UserController extends Controller
     public function index()
     {
         //
+
     }
 
     /**
@@ -25,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-
+      return view('user.create');
+      //return view('user.create');
     }
 
     /**
@@ -36,7 +40,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
     }
 
     /**
@@ -84,8 +88,5 @@ class UserController extends Controller
         //
     }
 
-    public function displaySignUpView()
-    {
-      return view('signup');
-    }
+
 }

@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('/signup','UserController@displaySignUpView');
-
 /*
 |--------------------------------------------------------------------------
 | Database Application Testing Routes
@@ -60,3 +58,19 @@ Route::get('/user/{id}/profile',function($id){
 Route::get('/profile/{id}/user',function($id){
   return Profile::find($id)->user;
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Application Signup Forms
+|--------------------------------------------------------------------------
+*/
+
+// Route::resource('/signup','UserController@displaySignUpView');
+//Route::resource('/user','UserController');
+
+Route::get('/signup',function(){
+  return view('user/create');
+});
+
+Route::post('/user',['as' => 'signup', 'uses' => 'UserController@store']);
