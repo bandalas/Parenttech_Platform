@@ -27,7 +27,9 @@ Route::group(['middleware' => 'user_guest'],function(){
 Route::group(['middleware' => 'user_auth'], function (){
 
     Route::get('/home',function(){
-        return view('user.home');
+        //'Event\EventController@displayAllEvents'
+        $event = DB::table('events')->get();
+        return view('user.home',['event' => $event]);
     });
     Route::post('logout','UserAuth\LoginController@logout');
 

@@ -2,16 +2,16 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-success">
-                    <div class="panel-heading">User's Dashboard</div>
-
-                    <div class="panel-body">
-                        Greetings.. User
-                    </div>
-                </div>
-            </div>
-        </div>
+        @foreach($event as $key => $data)
+            <table class="table table-striped">
+                <tr><td>{{$data->name}}</td></tr>
+                <tr>
+                    <td>{{$data->date}}</td>
+                    <td>{{$data->hour}}</td>
+                </tr>
+                <tr><td>{{$data->location}}</td></tr>
+                <tr><td>{{$data->description}}</td></tr>
+            </table>
+        @endforeach
     </div>
 @endsection
