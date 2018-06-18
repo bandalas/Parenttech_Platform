@@ -10,9 +10,7 @@ class EventController extends Controller
     //
 
     public function displayAllEvents(){
-        //$posts = Post::all();
         $event = Event::all();
-        //$event = DB::table('events')->get();
         return view('user.home',['event' => $event]);
     }
 }

@@ -1,0 +1,72 @@
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+#main-header{
+    height: 95%  ;
+}
+.main-nav-items{
+    border-left: 1px solid #dee0df;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 5px 20px;
+    float: right;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    letter-spacing: 2px;
+}
+
+li{
+    margin-left: 25px;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+header{
+    padding-top: 15%;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#about{
+    overflow: auto;
+}
+
+.left-box{
+    float: left;
+    width: 46%;
+    margin-right: 8%;
+    margin-bottom: 80px;
+    text-align: justify;
+}
+
+.strong-text{
+    font-family: 'Oswald', sans-serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.btn{
+    margin-top: 50px;
+}
+
+#about{
+    height: 100%;
+}
+
+.left-box{
+    margin-top: 100px;
+}
+
+.section-title{
+    margin-top: 60px;
+    text-align: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
