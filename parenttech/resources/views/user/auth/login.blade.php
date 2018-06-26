@@ -7,7 +7,7 @@
                 <div class="panel panel-success">
                     <div class="panel-heading">Seller Login</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('user.login') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
@@ -47,7 +47,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
                                 <div class="col-md-8 col-md-offset-4">
                                     <button type="submit" class="btn btn-success">

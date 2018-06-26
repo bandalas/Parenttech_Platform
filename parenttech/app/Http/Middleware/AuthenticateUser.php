@@ -16,9 +16,14 @@ class AuthenticateUser
      */
     public function handle($request, Closure $next)
     {
-        if(! Auth::guard('web')->check()){
-            return redirect('/login');
+        \Log::warning('its in handle!');
+
+        if(! Auth::guard('web_admin')->check() && Auth::guard()->check())
+        {
+            \Log::warning('its in handle');
+            return redirect('users.rip');
         }
+
         return $next($request);
     }
 }

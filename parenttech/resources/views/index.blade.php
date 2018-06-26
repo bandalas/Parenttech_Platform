@@ -23,10 +23,10 @@
                     <a href="#past-events">Eventos pasados</a>
                 </li>
                 <li>
-                    <a href="">Regístrate</a>
+                    <a href="{{ URL::route('user.signup') }}">Regístrate</a>
                 </li>
                 <li>
-                    <a href="">Iniciar sesión</a>
+                    <a href="{{ URL::route('user.login') }}">Iniciar sesión</a>
                 </li>
             </ul>
 
