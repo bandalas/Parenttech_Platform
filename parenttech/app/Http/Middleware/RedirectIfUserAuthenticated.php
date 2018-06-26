@@ -21,6 +21,11 @@ class RedirectIfUserAuthenticated
             return redirect('/home');
         }
 
+        if(Auth::guard('web_admin')->check())
+        {
+            return redirect('/hi');
+        }
+
         return $next($request);
     }
 }

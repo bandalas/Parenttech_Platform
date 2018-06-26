@@ -15,21 +15,20 @@ Route::get('/', 'Event\EventController@getFutureAndPastEvents');
 
 Route::get('/event/{id}','Event\EventController@getEventById');
 
-Route::group(['middleware' => 'user_guest'],function(){
+Route::group(['prefix' => 'user','as' => 'user.','middleware' => 'user_guest'],function(){
 
-    Route::get('register', 'UserAuth\RegisterController@showRegistrationForm');
+    Route::get('register', ['as' => 'signup', 'uses' => 'UserAuth\RegisterController@showRegistrationForm']);
     Route::post('register', 'UserAuth\RegisterController@register');
-    Route::get('login','UserAuth\LoginController@showLoginForm');
+    Route::get('login',['as' => 'login', 'uses' =>'UserAuth\LoginController@showLoginForm']);
     Route::post('login','UserAuth\LoginController@login');
 
 });
 
-Route::group(['middleware' => 'user_auth'], function (){
 
-    Route::get('/home',function(){
-        $event = DB::table('events')->get();
-        return view('user.home',['event' => $event]);
-    });
+
+Route::group(['prefix' => 'user','as' => 'user.','middleware' => 'user_auth'], function (){
+
+    Route::get('home',['as'=>'home', 'uses' => 'User\UserController@homeEvents']);
 
     Route::post('logout','UserAuth\LoginController@logout');
 
@@ -50,4 +49,10 @@ Route::get('/basicinsert',function(){
 
 Route::get('/truncate', 'Event\EventController@truncate');
 
+Route::get('/iadmin', function (){
+    $adm = new \App\Admin();
+    $adm->email ='a01334885@itesm.mx';
+    $adm->password ='1234test';
+    $adm->save();
+});
 
