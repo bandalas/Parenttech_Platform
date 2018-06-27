@@ -41,7 +41,7 @@ class EventController extends Controller
 
     public function truncate()
     {
-       Event::truncate();
+       //\App\User::truncate();
     }
 
     public function getEventById($id)
