@@ -68,7 +68,7 @@ class EventController extends Controller
     {
         $today = date('d-m-Y');
         $pastevents = Event::whereDate('date','<', $today)->get();
-        return view('index',['pastevents'=> $pastevents]);
+
     }
 
     public function truncate()
@@ -80,6 +80,7 @@ class EventController extends Controller
     {
         $event = Event::where('id',$id)->get();
         return view('Event\event_information',['event',$event]);
+
     }
 
 
