@@ -72,6 +72,7 @@
 
             <div id="future-events">
                 @include('event.list_future_events',['data'=>$futureevents])
+
             </div>
 
             <div id="past-events">

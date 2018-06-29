@@ -21,6 +21,7 @@ Route::get('/event/{id}','Event\EventController@getEventById');
  *              Admin and Users Authentication
  *
  */
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -33,7 +34,8 @@ Route::prefix('admin')->group(function (){
 
 /*      Inserting data for testing purposes         */
 Route::get('/basicinsert',function(){
-    $random_date = Carbon\Carbon::today()->subDays(2)->toDateString();
+    $random_date = Carbon\Carbon::today()->addDays(2)->toDateString();
+    \Log::error($random_date);
     $event = new \App\Event();
     $event->name = 'Test Past Event';
     $event->date = $random_date;
@@ -47,6 +49,9 @@ Route::get('/basicinsert',function(){
 
 Route::get('/truncate', 'Event\EventController@truncate');
 
+Route::group(['middleware' =>['\App\Http\Middleware\AdminMiddleware']], function (){
+    Route::resource('/admin/events','Event\EventController');
+});
 
 
 
