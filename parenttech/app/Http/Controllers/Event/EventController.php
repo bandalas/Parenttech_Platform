@@ -35,7 +35,8 @@ class EventController extends Controller
         $event->price = $request->get('price');
         $event->description = $request->get('description');
         $event->save();
-        return redirect(route('admin.dashboard'));
+        return redirect(route('events-media.create'))->with('id', $event->id);
+
     }
 
 
@@ -48,19 +49,17 @@ class EventController extends Controller
     public function getFutureAndPastEvents()
     {
         $today = Carbon::today()->toDateString();
-        \Log::warning($today);
-        $rip = Event::select('date')->where('id',2)->get();
-        \Log::warning($rip);
-        $futureevents = Event::whereDate('date','>=', $today)->join('events_media','events.id','=','events_media.event_id')->limit(3)->get();
+        //->join('events_media','events.id','=','events_media.event_id')
+        $futureevents = Event::whereDate('date','>=', $today)->limit(3)->get();
         $pastevents = Event::whereDate('date','<', $today)->limit(3)->get();
-        \Log::error($futureevents);
         return view('index',array('futureevents'=> $futureevents, 'pastevents'=> $pastevents));
     }
+  
     public function getFutureEvents()
     {
         $today = date('d-m-Y');
-        $futureevents = Event::whereDate('date','>=', $today)->get();
-
+        $futureevents = Event::whereDate('date','>=', $today)->get()->join('events_media','events.id','=','events_media.event_id');
+      
         return view('index',['futureevents'=> $futureevents], $today);
     }
 
@@ -68,7 +67,7 @@ class EventController extends Controller
     {
         $today = date('d-m-Y');
         $pastevents = Event::whereDate('date','<', $today)->get();
-
+        return view('index',['pastevents'=> $pastevents]);
     }
 
     public function truncate()
@@ -80,7 +79,6 @@ class EventController extends Controller
     {
         $event = Event::where('id',$id)->get();
         return view('Event\event_information',['event',$event]);
-
     }
 
 

@@ -24,7 +24,7 @@
                     <div class="card">
                         <div class="card-header"><strong><h1>Agrega un evento</h1></strong></div>
                         <div class="card-body">
-                            @include('admin.event-form')
+                            @include('admin.create-form')
                         </div>
                     </div>
                 </div>
