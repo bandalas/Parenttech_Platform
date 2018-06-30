@@ -73,21 +73,9 @@ class EventController extends Controller
     {
         $today = Carbon::today()->toDateString();
         $futureevents = Event::whereDate('date','>=', $today)->join('events_media','events.id','=','events_media.event_id')->get();
-        \Log::error($futureevents);
         return $futureevents;
     }
 
-    public function getPastEvents()
-    {
-        $today = date('d-m-Y');
-        $pastevents = Event::whereDate('date','<', $today)->get();
-        return view('index',['pastevents'=> $pastevents]);
-    }
-
-    public function truncate()
-    {
-       \App\Event::truncate();
-    }
 
     public function getEventById($id)
     {
