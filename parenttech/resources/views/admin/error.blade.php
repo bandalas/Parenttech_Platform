@@ -1,0 +1,2 @@
+error
+regresando a dashboard

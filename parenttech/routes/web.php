@@ -51,6 +51,7 @@ Route::get('/truncate', 'Event\EventController@truncate');
 
 Route::group(['middleware' =>['\App\Http\Middleware\AdminMiddleware']], function (){
     Route::resource('/admin/events','Event\EventController');
+    Route::resource('/admin/events-media','Event\EventMediaController');
 });
 
 

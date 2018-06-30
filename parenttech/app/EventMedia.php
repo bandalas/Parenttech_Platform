@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class EventMedia extends Model
 {
     //
+    protected $table = 'events_media';
     protected $fillable = [
         'thumbnail',
         'img1',
