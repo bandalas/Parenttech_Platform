@@ -54,11 +54,12 @@ class EventController extends Controller
         $pastevents = Event::whereDate('date','<', $today)->limit(3)->get();
         return view('index',array('futureevents'=> $futureevents, 'pastevents'=> $pastevents));
     }
+  
     public function getFutureEvents()
     {
         $today = date('d-m-Y');
         $futureevents = Event::whereDate('date','>=', $today)->get()->join('events_media','events.id','=','events_media.event_id');
-
+      
         return view('index',['futureevents'=> $futureevents], $today);
     }
 
