@@ -69,11 +69,22 @@ class EventController extends Controller
         $pastevents = Event::whereDate('date','<', $today)->limit(3)->get();
         return view('index',array('futureevents'=> $futureevents, 'pastevents'=> $pastevents));
     }
+  
     public function getFutureEvents()
     {
+
         $today = Carbon::today()->toDateString();
         $futureevents = Event::whereDate('date','>=', $today)->join('events_media','events.id','=','events_media.event_id')->get();
         return $futureevents;
+
+    }
+
+    public function getPastEvents()
+    {
+        $today = date('d-m-Y');
+        $pastevents = Event::whereDate('date','<', $today)->get();
+        return view('index',['pastevents'=> $pastevents]);
+
     }
 
 
