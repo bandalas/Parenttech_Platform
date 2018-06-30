@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Event;
 
+use App\EventMedia;
+use App\Http\Controllers\AdminController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -39,6 +41,20 @@ class EventController extends Controller
 
     }
 
+    public function show($id){
+
+        $event = Event::where('id',$id)->first();
+        $media = EventMedia::where('event_id',$id)->first();
+        return view('event.event_information',array('event' => $event, 'media' => $media));
+    }
+
+    public function destroy($id){
+        $adminCont = new AdminController;
+        $media = EventMedia::where('event_id',$id);
+        $media->delete();
+        $event = Event::find($id)->delete();
+        return $adminCont->index();
+    }
 
     public function displayAllEvents()
     {
@@ -49,17 +65,16 @@ class EventController extends Controller
     public function getFutureAndPastEvents()
     {
         $today = Carbon::today()->toDateString();
-        //->join('events_media','events.id','=','events_media.event_id')
         $futureevents = Event::whereDate('date','>=', $today)->limit(3)->get();
         $pastevents = Event::whereDate('date','<', $today)->limit(3)->get();
         return view('index',array('futureevents'=> $futureevents, 'pastevents'=> $pastevents));
     }
     public function getFutureEvents()
     {
-        $today = date('d-m-Y');
-        $futureevents = Event::whereDate('date','>=', $today)->get()->join('events_media','events.id','=','events_media.event_id');
-
-        return view('index',['futureevents'=> $futureevents], $today);
+        $today = Carbon::today()->toDateString();
+        $futureevents = Event::whereDate('date','>=', $today)->join('events_media','events.id','=','events_media.event_id')->get();
+        \Log::error($futureevents);
+        return $futureevents;
     }
 
     public function getPastEvents()
@@ -79,6 +94,5 @@ class EventController extends Controller
         $event = Event::where('id',$id)->get();
         return view('Event\event_information',['event',$event]);
     }
-
 
 }
