@@ -25,6 +25,7 @@ Route::get('/event/{id}','Event\EventController@getEventById');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/event/{id}','Event\EventController@show')->name('ev.show');
 
 Route::prefix('admin')->group(function (){
     Route::get('/login','Auth\AdminLoginController@showLoginForm')->name('admin.login');
@@ -32,20 +33,6 @@ Route::prefix('admin')->group(function (){
     Route::get('/', 'AdminController@index')->name('admin.dashboard');
 });
 
-/*      Inserting data for testing purposes         */
-Route::get('/basicinsert',function(){
-    $random_date = Carbon\Carbon::today()->addDays(2)->toDateString();
-    \Log::error($random_date);
-    $event = new \App\Event();
-    $event->name = 'Test Past Event';
-    $event->date = $random_date;
-    $event->hour = '20:00';
-    $event->location = 'CDMX';
-
-    $event->price = '800';
-    $event->description = 'This is an example description';
-    $event->save();
-});
 
 Route::get('/truncate', 'Event\EventController@truncate');
 

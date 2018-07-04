@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Event\EventController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
@@ -10,9 +11,12 @@ use phpDocumentor\Reflection\Types\Boolean;
 class AdminLoginController extends Controller
 {
     //
+    protected $eventController;
+
     public function __construct()
     {
         $this->middleware('guest:admin');
+        $this->eventController = new EventController;
     }
 
     public function showLoginForm()

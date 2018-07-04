@@ -20,7 +20,7 @@ class CreateEventsTable extends Migration
             $table->string('hour');
             $table->string('location');
             $table->float('price');
-            $table->string('description');
+            $table->longText('description');
             $table->timestamps();
         });
     }

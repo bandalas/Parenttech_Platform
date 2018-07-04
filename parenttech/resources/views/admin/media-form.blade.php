@@ -1,5 +1,7 @@
 <div id="media-form">
-
+    @if($id == null)
+       {{ \App\Http\Controllers\Event\EventMediaController::itHasNoId() }}
+    @endif
     <form method="POST" action="{{ route('events-media.store', ['id'=>$id]) }}">
         {{ csrf_field() }}
 

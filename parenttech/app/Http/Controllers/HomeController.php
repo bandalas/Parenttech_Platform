@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Event\EventController;
 
 class HomeController extends Controller
 {
+    protected $eventController;
     /**
      * Create a new controller instance.
      *
@@ -14,6 +16,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->eventController = new EventController;
     }
 
     /**
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $future = $this->eventController->getFutureEvents();
+        return view('home',['data' => $future]);
     }
 }
